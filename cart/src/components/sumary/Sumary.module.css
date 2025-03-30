@@ -1,0 +1,74 @@
+.sumaryContainer{
+  border: solid 2px #b0b0b0;
+}
+
+.resume{
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: #e7e7e7;
+  padding: 10px 20px;
+  border-bottom: solid 2px #b0b0b0;
+}
+
+.subTotal{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e7e7e7;
+  color: #3d3d3d;
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+
+.frete{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e7e7e7;
+  color:#3d3d3d;
+  font-size: 1rem;
+  padding: 5px 20px;
+}
+
+.cupomDesconto{
+  color: green;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 5px 20px;
+  border: none;
+  background: none;
+  background-color: #e7e7e7;
+  cursor: pointer;
+}
+
+.iconArrow{
+  font-size: 1.4rem;
+}
+
+.total{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #b0b0b0;
+  color:#3d3d3d;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px 20px;
+}
+
+.btnFinishOrder{
+  background-color: none;
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  width: 100%;
+  margin-top: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btnFinishOrder:hover{
+  opacity: 0.9;
+}
