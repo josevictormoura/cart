@@ -1,0 +1,18 @@
+.inputGroup{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.inputGroup span{
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.inputGroup input{
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  border: 1px solid gray;
+}

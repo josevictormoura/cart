@@ -1,12 +1,13 @@
-import React from 'react'
-import styles from './TableRow.module.css'
-import { IoIosAddCircleOutline } from "react-icons/io";
-import { IoIosRemoveCircleOutline } from "react-icons/io";
-import { RiDeleteBin2Line } from "react-icons/ri";
+import React from 'react';
+import styles from './TableRow.module.css';
+import { IoIosAddCircleOutline } from 'react-icons/io';
+import { IoIosRemoveCircleOutline } from 'react-icons/io';
+import { RiDeleteBin2Line } from 'react-icons/ri';
 import { formatCurrancy } from '../utils/formatCurrancy';
 
-const TableRow = ({data}) => {
-  const {name, category, price, quant} = data
+const TableRow = ({ data }) => {
+  console.log(data);
+  const { name, category, price, quantility } = data;
   return (
     <tr>
       <td>
@@ -18,26 +19,30 @@ const TableRow = ({data}) => {
           </div>
         </div>
       </td>
-      <td>{formatCurrancy(data.price, "BRL")}</td>
+      <td>{formatCurrancy(price, 'BRL')}</td>
       <td>
         <div className={styles.quant}>
           <button className={styles.btn}>
-            <IoIosRemoveCircleOutline className={`${styles.icon} ${styles.iconMinus}`}/>
+            <IoIosRemoveCircleOutline
+              className={`${styles.icon} ${styles.iconMinus}`}
+            />
           </button>
-          <span className={styles.quantValue}>{quant}</span>
+          <span className={styles.quantValue}>{quantility}</span>
           <button className={styles.btn}>
-            <IoIosAddCircleOutline className={`${styles.icon} ${styles.iconPlus}`}/>
+            <IoIosAddCircleOutline
+              className={`${styles.icon} ${styles.iconPlus}`}
+            />
           </button>
         </div>
       </td>
-      <td>{formatCurrancy((price * quant), "BRL")}</td>
+      <td>{formatCurrancy(price * quantility, 'BRL')}</td>
       <td>
         <button className={styles.btnRemove}>
-          <RiDeleteBin2Line className={styles.iconRemove}/>
+          <RiDeleteBin2Line className={styles.iconRemove} />
         </button>
       </td>
     </tr>
-  )
-}
+  );
+};
 
-export default TableRow
+export default TableRow;

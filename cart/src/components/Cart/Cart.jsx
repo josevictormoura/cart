@@ -4,9 +4,28 @@ import PageTile from '../PageTitle/PageTitle';
 import TableRow from '../TableRow/TableRow';
 import Sumary from '../sumary/Sumary';
 import { Context } from '../Context/UseContext';
+import { GET } from '../../api/Api';
+import ModalProduct from '../modalProduct/ModalProduct';
+import Button from '../Button/Button';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Cart = () => {
-  const { products } = React.useContext(Context);
+  const { setModal } = React.useContext(Context);
+  const { products, setProducts } = React.useContext(Context);
+
+  const fetchProducts = React.useCallback(async () => {
+    try {
+      const getProducts = await GET();
+      setProducts(getProducts);
+    } catch (error) {
+      console.log('Erro ao buscar produto', error);
+      toast.error('Erro ao carregar produto');
+    }
+  }, [setProducts]);
+
+  React.useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   return (
     <>
@@ -15,6 +34,9 @@ const Cart = () => {
         <PageTile data="Seu carrinho" />
         <div className="container">
           <section className="content-table">
+            <Button bg="blue" onClick={() => setModal(true)}>
+              Adicionar produto
+            </Button>
             <table>
               <thead>
                 <tr>
@@ -26,8 +48,10 @@ const Cart = () => {
                 </tr>
               </thead>
               <tbody>
-                {products.lenght > 0 ? (
-                  products.map((product) => <TableRow data={product} />)
+                {products && products.length > 0 ? (
+                  products.map((product) => (
+                    <TableRow key={product.id} data={product} />
+                  ))
                 ) : (
                   <tr>
                     <td colSpan="5">Nenhum produto adicionado!</td>
@@ -38,7 +62,9 @@ const Cart = () => {
           </section>
           <Sumary />
         </div>
+        <ModalProduct />
       </main>
+      <ToastContainer />
     </>
   );
 };
