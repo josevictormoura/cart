@@ -4,7 +4,7 @@ import PageTile from '../PageTitle/PageTitle';
 import TableRow from '../TableRow/TableRow';
 import Sumary from '../sumary/Sumary';
 import { Context } from '../Context/UseContext';
-import { GET } from '../../api/Api';
+import { DELETE, GET } from '../../api/Api';
 import ModalProduct from '../modalProduct/ModalProduct';
 import Button from '../Button/Button';
 import { toast, ToastContainer } from 'react-toastify';
@@ -22,6 +22,12 @@ const Cart = () => {
       toast.error('Erro ao carregar produto');
     }
   }, [setProducts]);
+
+  const handleDeleteProduct = async (id) => {
+    console.log(id);
+    await DELETE(id);
+    fetchProducts();
+  };
 
   React.useEffect(() => {
     fetchProducts();
@@ -50,7 +56,11 @@ const Cart = () => {
               <tbody>
                 {products && products.length > 0 ? (
                   products.map((product) => (
-                    <TableRow key={product.id} data={product} />
+                    <TableRow
+                      key={product._id}
+                      data={product}
+                      handleDeleteProduct={handleDeleteProduct}
+                    />
                   ))
                 ) : (
                   <tr>

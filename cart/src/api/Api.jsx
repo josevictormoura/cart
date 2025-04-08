@@ -1,6 +1,7 @@
+const URL_API =
+  'https://crudcrud.com/api/ca981a1da8d64cc3a0fe5da12383ee67/products';
+
 export async function GET() {
-  const URL_API =
-    'https://crudcrud.com/api/96c177cfe243445fb758096d40629850/products';
   try {
     const request = await fetch(URL_API);
     if (!request.ok) {
@@ -13,13 +14,23 @@ export async function GET() {
   }
 }
 
+export async function DELETE(id) {
+  if (!id) {
+    throw new Error('Id invalido ou vazio!');
+  }
+  const URL_API_ID = `${URL_API}/${id}`;
+  try {
+    const response = await fetch(URL_API_ID, { method: DELETE });
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function POST(body) {
   if (!body) {
     throw new Error('O corpo da requisicao e obrigatorio');
   }
-
-  const URL_API =
-    'https://crudcrud.com/api/96c177cfe243445fb758096d40629850/products';
   try {
     const request = await fetch(URL_API, {
       method: 'POST',

@@ -5,9 +5,9 @@ import { IoIosRemoveCircleOutline } from 'react-icons/io';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { formatCurrancy } from '../utils/formatCurrancy';
 
-const TableRow = ({ data }) => {
+const TableRow = ({ data, handleDeleteProduct }) => {
   console.log(data);
-  const { name, category, price, quantility } = data;
+  const { _id, name, category, price, quantility } = data;
   return (
     <tr>
       <td>
@@ -37,7 +37,10 @@ const TableRow = ({ data }) => {
       </td>
       <td>{formatCurrancy(price * quantility, 'BRL')}</td>
       <td>
-        <button className={styles.btnRemove}>
+        <button
+          onClick={() => handleDeleteProduct(_id)}
+          className={styles.btnRemove}
+        >
           <RiDeleteBin2Line className={styles.iconRemove} />
         </button>
       </td>
